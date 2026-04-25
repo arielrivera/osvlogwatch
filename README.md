@@ -23,16 +23,25 @@ A PowerShell-based file system watcher that monitors a folder for `.7z` files an
 
 ### Option 1: Run as Scheduled Task (Recommended for Production)
 
-1. **Open PowerShell as Administrator**
-2. **Run the installer:**
-   ```powershell
-   .\Install-Service.ps1
-   ```
-3. The task will:
-   - Start automatically at system boot
-   - Run as SYSTEM (no user login required)
-   - Auto-restart if it fails
-   - Run silently in background
+**From an elevated (Administrator) PowerShell session:**
+
+```powershell
+.\Install-Service.ps1
+```
+
+**From a regular PowerShell session (auto-elevate):**
+
+```powershell
+powershell -Command "Start-Process powershell -Verb RunAs -ArgumentList '-ExecutionPolicy Bypass -File \"C:\Users\OSVHo\Documents\osvlogwatch\Install-Service.ps1\"'"
+```
+
+This will trigger a UAC prompt and open a new elevated PowerShell window to run the installer.
+
+The installed task will:
+- Start automatically at system boot
+- Run as SYSTEM (no user login required)
+- Auto-restart if it fails
+- Run silently in background
 
 ### Option 2: Run Manually (For Testing)
 
