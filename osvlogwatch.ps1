@@ -60,8 +60,7 @@ $onCreatedAction = {
         Start-Process `
             -FilePath $exePath `
             -ArgumentList "`"$filePath`"" `
-            -WorkingDirectory $exeDir `
-            -NoNewWindow
+            -WorkingDirectory $exeDir
 
         Write-Log "Executed validator for $fileName (from $exeDir)"
 

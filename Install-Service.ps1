@@ -6,8 +6,9 @@
 
 .DESCRIPTION
     This script creates a scheduled task that runs the OSVLogWatcher PowerShell script
-    at system startup. The task runs as SYSTEM with highest privileges and will
-    auto-restart if it fails.
+    at system startup. The task runs as the current interactive user with highest 
+    privileges and will auto-restart if it fails. This allows the validator executable
+    to display windows on the user's desktop.
 
 .NOTES
     Run this script as Administrator.
@@ -43,10 +44,11 @@ $Action = New-ScheduledTaskAction `
 # Create trigger (at startup)
 $Trigger = New-ScheduledTaskTrigger -AtStartup
 
-# Create principal (run as SYSTEM)
+# Create principal (run as current user)
+$currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $Principal = New-ScheduledTaskPrincipal `
-    -UserId "SYSTEM" `
-    -LogonType ServiceAccount `
+    -UserId $currentUser `
+    -LogonType Interactive `
     -RunLevel Highest
 
 # Create settings
@@ -75,7 +77,7 @@ try {
     Write-Host "  Name: $TaskName"
     Write-Host "  Script: $ScriptPath"
     Write-Host "  Trigger: At system startup"
-    Write-Host "  User: SYSTEM"
+    Write-Host "  User: $currentUser"
     Write-Host ""
     Write-Host "Management Commands:" -ForegroundColor Cyan
     Write-Host "  Start:   Start-ScheduledTask -TaskName '$TaskName'" -ForegroundColor Yellow

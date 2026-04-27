@@ -17,11 +17,21 @@ A PowerShell-based file system watcher that monitors a folder for `.7z` files an
 |------|-------------|
 | `osvlogwatch.ps1` | Main watcher script (service-ready) |
 | `Install-Service.ps1` | Creates Windows Scheduled Task |
+| `reinstall.bat` | **Easy installer** - removes old task and installs new one |
 | `README.md` | This documentation |
 
 ## Quick Start
 
-### Option 1: Run as Scheduled Task (Recommended for Production)
+### Option 1: Easy Install (Recommended)
+
+Simply **right-click `reinstall.bat` and select "Run as administrator"**.
+
+This will:
+1. Remove any existing OSVLogWatcher task
+2. Install the new task with current settings
+3. Start the watcher immediately
+
+### Option 2: Manual Install
 
 **From an elevated (Administrator) PowerShell session:**
 
@@ -39,11 +49,11 @@ This will trigger a UAC prompt and open a new elevated PowerShell window to run 
 
 The installed task will:
 - Start automatically at system boot
-- Run as SYSTEM (no user login required)
+- Run as your user account (allows validator window to be visible)
 - Auto-restart if it fails
 - Run silently in background
 
-### Option 2: Run Manually (For Testing)
+### Option 3: Run Manually (For Testing)
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File osvlogwatch.ps1
