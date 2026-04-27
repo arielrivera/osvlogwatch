@@ -1,4 +1,4 @@
-# OSV Log Watcher
+# Log Folder Watcher
 
 A PowerShell-based file system watcher that monitors a folder for `.7z` files and automatically runs a validator executable when new files are detected.
 
