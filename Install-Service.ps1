@@ -15,8 +15,8 @@
 #>
 
 $TaskName = "OSVLogWatcher"
-$ScriptPath = "C:\Users\OSVHo\Documents\osvlogwatch\osvlogwatch.ps1"
-$WorkingDir = "C:\Users\OSVHo\Documents\osvlogwatch"
+$ScriptPath = "C:\XXXX\XXXXXX\Documents\XXXXXXX\osvlogwatch.ps1"
+$WorkingDir = "C:\XXXX\XXXXXX\Documents\XXXXXXX"
 
 Write-Host "Installing OSVLogWatcher Scheduled Task..." -ForegroundColor Cyan
 Write-Host ""
@@ -68,7 +68,7 @@ try {
         -Trigger $Trigger `
         -Principal $Principal `
         -Settings $Settings `
-        -Description "Monitors C:\Users\OSVHo\Documents\OSV Template\Incoming for .7z files and runs TestResultValidator_v1.2.exe" `
+        -Description "Monitors C:\XXXX\XXXXXX\Documents\XXXXXXX\Folder for .7z files and runs TestResultValidator_v1.2.exe" `
         -ErrorAction Stop
 
     Write-Host "SUCCESS: Task '$TaskName' created!" -ForegroundColor Green
@@ -85,7 +85,7 @@ try {
     Write-Host "  Status:  Get-ScheduledTask -TaskName '$TaskName'" -ForegroundColor Yellow
     Write-Host "  Remove:  Unregister-ScheduledTask -TaskName '$TaskName' -Confirm:`$false" -ForegroundColor Yellow
     Write-Host ""
-    Write-Host "Logs are written to: C:\Users\OSVHo\Documents\OSV Template\watcher.log" -ForegroundColor Gray
+    Write-Host "Logs are written to: C:\XXXX\XXXXXX\Documents\XXXXXXX\watcher.log" -ForegroundColor Gray
     
     # Start the task now
     Write-Host ""
