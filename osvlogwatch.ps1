@@ -1,8 +1,8 @@
 # ---------------- CONFIG ----------------
-$watchPath  = "C:\Users\OSVHo\Documents\OSV Template\Incoming"
-$exePath    = "C:\Users\OSVHo\Documents\OSV Template\TestResultValidator_v1.2.exe"
-$logPath    = "C:\Users\OSVHo\Documents\OSV Template\watcher.log"
-$statePath  = "C:\Users\OSVHo\Documents\OSV Template\processed_files.txt"
+$watchPath  = "C:\XXXX\XXXXXX\Documents\XXXXXXX\Folder"
+$exePath    = "C:\XXXX\XXXXXX\Documents\XXXXXXX\Executable_v1.2.exe"
+$logPath    = "C:\XXXX\XXXXXX\Documents\XXXXXXX\watcher.log"
+$statePath  = "C:\XXXX\XXXXXX\Documents\XXXXXXX\processed_files.txt"
 # ----------------------------------------
 
 # --- Simple logger ---
