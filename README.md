@@ -96,10 +96,10 @@ Edit the CONFIG section at the top of `osvlogwatch.ps1`:
 
 ```powershell
 # ---------------- CONFIG ----------------
-$watchPath  = "C:\Users\XXXXX\Documents\OSV Template\Incoming"     # Folder to watch
-$exePath    = "C:\Users\XXXXX\Documents\OSV Template\TestResultValidator_v1.2.exe"  # Validator
-$logPath    = "C:\Users\XXXXX\Documents\OSV Template\watcher.log"  # Log file
-$statePath  = "C:\Users\XXXXX\Documents\OSV Template\processed_files.txt"  # Processed tracking
+$watchPath  = "C:\Users\XXXXX\Documents\XXXXXXXXX\Incoming"     # Folder to watch
+$exePath    = "C:\Users\XXXXX\Documents\XXXXXXXXX\TestResultValidator_v1.2.exe"  # Validator
+$logPath    = "C:\Users\XXXXX\Documents\XXXXXXXXX\watcher.log"  # Log file
+$statePath  = "C:\Users\XXXXX\Documents\XXXXXXXXX\processed_files.txt"  # Processed tracking
 # ----------------------------------------
 ```
 
