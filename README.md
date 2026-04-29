@@ -4,9 +4,9 @@ A PowerShell-based file system watcher that monitors a folder for `.7z` files an
 
 ## What It Does
 
-- **Monitors** `C:\Users\OSVHo\Documents\OSV Template\Incoming` for new `.7z` files
+- **Monitors** `C:\Users\XXXXXX\XXXXXX\Folder` for new `.7z` files
 - **Detects** when files are fully written (waits for file to be ready)
-- **Executes** `TestResultValidator_v1.2.exe` with the detected file path
+- **Executes** `Executable_v1.2.exe` with the detected file path
 - **Runs from correct directory** - validator executes from its own folder
 - **Prevents duplicates** - tracks processed files to avoid re-processing
 - **Logs all activity** to `watcher.log`
@@ -42,7 +42,7 @@ This will:
 **From a regular PowerShell session (auto-elevate):**
 
 ```powershell
-powershell -Command "Start-Process powershell -Verb RunAs -ArgumentList '-ExecutionPolicy Bypass -File \"C:\Users\OSVHo\Documents\osvlogwatch\Install-Service.ps1\"'"
+powershell -Command "Start-Process powershell -Verb RunAs -ArgumentList '-ExecutionPolicy Bypass -File \"C:\Users\XXXXXX\XXXXXX\Folder\Install-Service.ps1\"'"
 ```
 
 This will trigger a UAC prompt and open a new elevated PowerShell window to run the installer.
@@ -96,10 +96,10 @@ Edit the CONFIG section at the top of `osvlogwatch.ps1`:
 
 ```powershell
 # ---------------- CONFIG ----------------
-$watchPath  = "C:\Users\OSVHo\Documents\OSV Template\Incoming"     # Folder to watch
-$exePath    = "C:\Users\OSVHo\Documents\OSV Template\TestResultValidator_v1.2.exe"  # Validator
-$logPath    = "C:\Users\OSVHo\Documents\OSV Template\watcher.log"  # Log file
-$statePath  = "C:\Users\OSVHo\Documents\OSV Template\processed_files.txt"  # Processed tracking
+$watchPath  = "C:\Users\XXXXX\Documents\OSV Template\Incoming"     # Folder to watch
+$exePath    = "C:\Users\XXXXX\Documents\OSV Template\TestResultValidator_v1.2.exe"  # Validator
+$logPath    = "C:\Users\XXXXX\Documents\OSV Template\watcher.log"  # Log file
+$statePath  = "C:\Users\XXXXX\Documents\OSV Template\processed_files.txt"  # Processed tracking
 # ----------------------------------------
 ```
 
@@ -107,7 +107,7 @@ $statePath  = "C:\Users\OSVHo\Documents\OSV Template\processed_files.txt"  # Pro
 
 All activity is logged to:
 ```
-C:\Users\OSVHo\Documents\OSV Template\watcher.log
+C:\XXXXXX\XXXXXX\XXXXXX\watcher.log
 ```
 
 Example log output:
@@ -115,7 +115,7 @@ Example log output:
 2026-04-24 18:28:37 | Watcher started.
 2026-04-24 18:29:27 | Detected new file: test.7z
 2026-04-24 18:29:27 | File ready: test.7z
-2026-04-24 18:29:28 | Executed validator for test.7z (from C:\Users\OSVHo\Documents\OSV Template)
+2026-04-24 18:29:28 | Executed validator for test.7z (from C:\XXXXXX\XXXXXX\XXXXXX\XXX XXXXXXX)
 ```
 
 ## How It Works
@@ -132,7 +132,7 @@ Example log output:
 
 ### Task won't start
 - Check that paths in CONFIG section are correct
-- Verify `TestResultValidator_v1.2.exe` exists
+- Verify `Executable_v1.2.exe` exists
 - Check Windows Event Viewer for errors
 
 ### Files not being detected
