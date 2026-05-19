@@ -16,7 +16,8 @@ A PowerShell-based file system watcher that monitors a folder for `.7z` files an
 
 | File | Description |
 |------|-------------|
-| `osvlogwatch.ps1` | Main watcher script with config validation |
+| `StartHere.ps1` | **GUI Application** - User-friendly interface for setup and management |
+| `osvlogwatch.ps1` | Main watcher script (service-ready) |
 | `config.json` | **Local configuration** (user-specific paths) |
 | `config.example.json` | Example configuration template |
 | `Install-Service.ps1` | Creates Windows Scheduled Task |
@@ -24,9 +25,43 @@ A PowerShell-based file system watcher that monitors a folder for `.7z` files an
 | `.gitignore` | Excludes local config and logs from Git |
 | `README.md` | This documentation |
 
-## Quick Start
+## Quick Start (Recommended)
 
-### Step 1: Configure
+### For New Users - Use the GUI
+
+The easiest way to get started is using the graphical interface:
+
+1. **Right-click `StartHere.ps1`** and select **"Run with PowerShell"**
+
+2. **Setup Wizard** tab will guide you through:
+   - Selecting the folder to watch
+   - Selecting your validator executable
+   - Setting log file locations
+   - Testing and saving configuration
+   - Installing the Windows service
+
+3. **Dashboard** tab shows:
+   - Real-time service status (Running/Stopped/Not Installed)
+   - Start/Stop/Restart controls
+   - Current configuration summary
+   - Quick actions (open folders, refresh status)
+
+4. **Log Viewer** tab provides:
+   - Live log monitoring with auto-refresh
+   - Export logs for troubleshooting
+   - Clear log file
+
+5. **Tools** tab includes:
+   - Create test .7z files
+   - Validate configuration
+   - Clear processed files history
+   - Remove service
+
+### For Power Users - Manual Setup
+
+If you prefer command-line setup:
+
+#### Step 1: Configure
 
 1. Copy the example configuration:
    ```powershell
@@ -44,9 +79,9 @@ A PowerShell-based file system watcher that monitors a folder for `.7z` files an
    }
    ```
 
-### Step 2: Install (Run as Administrator)
+#### Step 2: Install (Run as Administrator)
 
-#### Option A: Easy Install (Recommended)
+**Option A: Easy Install**
 
 Right-click `reinstall.bat` and select **"Run as administrator"**.
 
@@ -55,7 +90,7 @@ This will:
 2. Install the new task with current settings
 3. Start the watcher immediately
 
-#### Option B: Manual Install
+**Option B: Manual Install**
 
 **From an elevated (Administrator) PowerShell session:**
 ```powershell
@@ -73,7 +108,7 @@ The installed task will:
 - Auto-restart if it fails
 - Run silently in background
 
-### Step 3: Test
+#### Step 3: Test
 
 Run manually to verify configuration:
 ```powershell
@@ -96,6 +131,49 @@ Press Ctrl+C to stop.
 ```
 
 Press `Ctrl+C` to stop.
+
+## Using the GUI (StartHere.ps1)
+
+### Setup Wizard Tab
+
+**First-time setup:**
+1. **Select Watch Folder** - Browse to the folder where .7z files will be dropped
+2. **Select Validator Executable** - Browse to your .exe file that processes the .7z files
+3. **Set Log Locations** (optional) - Defaults will be used if not specified
+4. **Test Configuration** - Validates all paths exist and are accessible
+5. **Save Configuration** - Creates config.json file
+6. **Install Service** - Installs as Windows Scheduled Task
+
+### Dashboard Tab
+
+**Monitor and control the service:**
+- **Status Display**: Large color-coded status (Green=Running, Red=Stopped, Gray=Not Installed)
+- **Control Buttons**: Start, Stop, Restart service
+- **Quick Actions**: Open watch folder, open log folder, refresh status
+- **Configuration Summary**: View current settings
+
+### Log Viewer Tab
+
+**Monitor watcher activity:**
+- **Live Log**: Shows last 100 lines of watcher.log
+- **Auto-refresh**: Updates every 5 seconds (toggle on/off)
+- **Manual Refresh**: Update log display on demand
+- **Export**: Save log to another location
+- **Clear**: Empty the log file (with confirmation)
+
+### Tools Tab
+
+**Testing and maintenance:**
+- **Create Test .7z File**: Generates a test file in the watch folder
+- **Validate Configuration**: Re-checks all paths and settings
+- **Clear Processed History**: Removes processed_files.txt (files will be re-processed)
+- **Remove Service**: Uninstalls the scheduled task
+
+### Help Tab
+
+- Quick start guide
+- Troubleshooting tips
+- Links to documentation
 
 ## Configuration
 
@@ -168,7 +246,19 @@ Example log output:
 
 ## Troubleshooting
 
-### Configuration file not found
+### Using the GUI
+
+Most issues can be resolved through the GUI:
+
+1. Open `StartHere.ps1`
+2. Go to **Tools** tab
+3. Click **Validate Configuration** to check all paths
+4. Check **Log Viewer** tab for error messages
+5. Use **Create Test .7z File** to verify the watcher is working
+
+### Common Issues
+
+#### Configuration file not found
 ```
 ERROR: Configuration file not found!
 Expected config file: C:\...\config.json
@@ -178,7 +268,9 @@ To fix this:
 2. Edit config.json with your actual paths
 ```
 
-### Validation errors
+**Fix**: Run `StartHere.ps1` and use the Setup Wizard, or manually copy and edit the config file.
+
+#### Validation errors
 ```
 VALIDATION FAILED!
 The following errors must be fixed before starting:
@@ -186,27 +278,30 @@ The following errors must be fixed before starting:
   X Executable not found: C:\Bad\Path\exe.exe
 ```
 
-**Fix**: Update `config.json` with correct paths.
+**Fix**: Update `config.json` with correct paths, or use the GUI Setup Wizard to browse for valid paths.
 
-### Files not being detected
+#### Files not being detected
 - Ensure files match the `fileFilter` pattern (default: `*.7z`)
 - Check that `watchPath` folder exists
 - Look at the configured log file for errors
 - Verify the scheduled task is Running: `Get-ScheduledTask -TaskName "OSVLogWatcher"`
+- Use the GUI Dashboard to check service status
 
-### Validator not working
+#### Validator not working
 - Verify validator runs manually from its folder
 - Check validator's own logs
 - Ensure file paths don't contain special characters
 - Check Windows Event Viewer for errors
+- Use the GUI Tools tab to create a test file and verify the workflow
 
 ## For Developers / Other Environments
 
 1. Clone the repository
 2. Copy `config.example.json` to `config.json`
-3. Edit `config.json` with your local paths
-4. Run `.\Install-Service.ps1` as Administrator
-5. The validation system will guide you if anything is misconfigured
+3. **Option A**: Run `StartHere.ps1` for guided GUI setup
+4. **Option B**: Edit `config.json` manually with your local paths
+5. Run `.\Install-Service.ps1` as Administrator (or use the GUI)
+6. The validation system will guide you if anything is misconfigured
 
 Your local `config.json` will not be pushed to GitHub (it's in `.gitignore`), keeping your paths private.
 
@@ -223,3 +318,4 @@ Your local `config.json` will not be pushed to GitHub (it's in `.gitignore`), ke
 - The script auto-restarts up to 3 times if it crashes
 - Uses `Start-Sleep 1` in main loop (minimal CPU usage)
 - Configuration validation prevents startup with invalid paths
+- The GUI (`StartHere.ps1`) provides a user-friendly alternative to command-line configuration
