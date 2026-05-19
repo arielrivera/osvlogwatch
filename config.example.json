@@ -1,0 +1,7 @@
+{
+  "watchPath": "C:\\Path\\To\\Your\\Incoming\\Folder",
+  "exePath": "C:\\Path\\To\\Your\\Validator.exe",
+  "logPath": "C:\\Path\\To\\Your\\watcher.log",
+  "statePath": "C:\\Path\\To\\Your\\processed_files.txt",
+  "fileFilter": "*.7z"
+}

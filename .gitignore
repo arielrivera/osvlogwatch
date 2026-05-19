@@ -1,0 +1,16 @@
+# Local configuration file (contains user-specific paths)
+config.json
+
+# Logs
+watcher.log
+*.log
+
+# Processed files tracking
+processed_files.txt
+
+# PowerShell temporary files
+*.tmp
+
+# Windows
+Thumbs.db
+desktop.ini
