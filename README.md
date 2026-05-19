@@ -1,6 +1,6 @@
 # Log Watch
 
-A PowerShell-based file system watcher that monitors a folder for `.7z` files and automatically runs a validator executable when new files are detected.
+A PowerShell-based file system watcher that monitors a folder for specified files and automatically runs an executable when new files are detected.
 
 ## What It Does
 
