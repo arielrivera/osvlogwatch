@@ -4,7 +4,7 @@ A PowerShell-based file system watcher that monitors a folder for specified file
 
 ## What It Does
 
-- **Monitors** a configured folder for new `.7z` files
+- **Monitors** a configured folder for new `.*` files
 - **Detects** when files are fully written (waits for file to be ready)
 - **Executes** your validator executable with the detected file path
 - **Runs from correct directory** - validator executes from its own folder
