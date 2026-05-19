@@ -28,7 +28,7 @@ A file system watcher that monitors a folder for specified files and automatical
 
 ### Step 1: Configure
 
-1. Copy the example configuration:
+1. Copy or modify the example configurationfile and name it config.json:
    ```powershell
    Copy-Item config.example.json config.json
    ```
@@ -48,7 +48,7 @@ A file system watcher that monitors a folder for specified files and automatical
 
 #### Option A: Easy Install (Recommended)
 
-Right-click `reinstall.bat` and select **"Run as administrator"**.
+Right-click, or execute manually as admin,  `reinstall.bat` and select **"Run as administrator"**.
 
 This will:
 1. Remove any existing OSVLogWatcher task
