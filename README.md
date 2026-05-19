@@ -1,6 +1,6 @@
 # Log Watch
 
-A PowerShell-based file system watcher that monitors a folder for specified files and automatically runs an executable when new files are detected.
+A file system watcher that monitors a folder for specified files and automatically runs an executable when new files are detected.
 
 ## What It Does
 
